@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\_Scripts\AccessAPI.cs" />
     <Compile Include="Assets\_Scripts\searchBAR.cs" />
     <Compile Include="Assets\_Scripts\Teclado.cs" />
     <Reference Include="Unity.Timeline.Editor">
