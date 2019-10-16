@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Scripts\AccessAPI.cs" />
+    <Compile Include="Assets\_Scripts\ImageSlider.cs" />
     <Compile Include="Assets\_Scripts\searchBAR.cs" />
     <Compile Include="Assets\_Scripts\Teclado.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
@@ -89,6 +90,9 @@
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Vilu-Llanos/Desktop/MAP/The_Map/Duoc_APP/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>C:/Users/Vilu-Llanos/Desktop/MAP/The_Map/Duoc_APP/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>C:/Users/Vilu-Llanos/Desktop/MAP/The_Map/Duoc_APP/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
@@ -100,9 +104,6 @@
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>C:/Users/Vilu-Llanos/Desktop/MAP/The_Map/Duoc_APP/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/Vilu-Llanos/Desktop/MAP/The_Map/Duoc_APP/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
