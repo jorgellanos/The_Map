@@ -9,7 +9,7 @@ public class ImageSlider : MonoBehaviour
     public float changeTime, time;
     public int currentSlide = 0;
     private float timeSinceLast = 3.0f;
-    public bool transition;
+    public bool transition, pass;
 
     void Start()
     {
@@ -33,7 +33,7 @@ public class ImageSlider : MonoBehaviour
         Color temp = slides[current].color;
         if (temp.a > 0)
         {
-            temp.a -= 1f * Time.deltaTime;
+            temp.a -= 2f * Time.deltaTime;
             slides[current].color = temp;
         }
         else
@@ -46,7 +46,12 @@ public class ImageSlider : MonoBehaviour
     {
         Color temp = slides[current].color;
         temp.a = 0;
-        slides[current].gameObject.SetActive(true);
+
+        if (!slides[current].gameObject.activeSelf)
+        {
+            slides[current].gameObject.SetActive(true);
+        }
+        
         if (temp.a < 1)
         {
             temp.a += 1f * Time.deltaTime;
@@ -60,12 +65,9 @@ public class ImageSlider : MonoBehaviour
         if (changeTime <= 0)
         {
             transition = false;
+            pass = true;
             changeTime = 0;
-            currentSlide += 1;
-            if (currentSlide > slides.Length)
-            {
-                currentSlide = 0;
-            }
+            
             StartCoroutine(Fading());
         }
     }
@@ -74,8 +76,20 @@ public class ImageSlider : MonoBehaviour
     {
         FadeOut(currentSlide);
         yield return new WaitForSeconds(timeSinceLast);
+        if (pass)
+        {
+            currentSlide += 1;
+            pass = false;
+        }
+
         changeTime = time;
         
+        
+        if (currentSlide > slides.Length)
+        {
+            currentSlide = 0;
+        }
+        yield return new WaitForSeconds(0.1f);
         FadeIn(currentSlide);
         yield return new WaitForSeconds(1);
         transition = false;
