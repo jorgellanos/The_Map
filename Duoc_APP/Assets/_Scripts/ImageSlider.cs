@@ -1,41 +1,83 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ImageSlider : MonoBehaviour
 {
-    public Texture2D[] slides = new Texture2D[9];
-    public float changeTime = 10.0f;
-    private int currentSlide = 0;
-    private float timeSinceLast = 1.0f;
+    public Image[] slides = new Image[3];
+    public float changeTime, time;
+    public int currentSlide = 0;
+    private float timeSinceLast = 3.0f;
+    public bool transition;
 
     void Start()
     {
-        transform.position = new Vector3(0.5f, 0.5f, 0.0f);
-        transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        GetComponent<GUITexture>().texture = slides[currentSlide];
-        GetComponent<GUITexture>().pixelInset = new Rect(-slides[currentSlide].width / 2.0f, -slides[currentSlide].height / 2.0f, slides[currentSlide].width, slides[currentSlide].height);
-        currentSlide++;
+        transition = false;
+        slides[0].gameObject.SetActive(true);
+        slides[1].gameObject.SetActive(false);
+        slides[2].gameObject.SetActive(false);
+        slides[3].gameObject.SetActive(false);
     }
 
     void Update()
     {
-        Debug.Log(currentSlide);
-
-        if (currentSlide == 3)
+        if (!transition)
         {
-            currentSlide = 0;
+            Timer();
         }
+    }
 
-        if (timeSinceLast > changeTime)
+    public void FadeOut(int current)
+    {
+        Color temp = slides[current].color;
+        if (temp.a > 0)
         {
-            GetComponent<GUITexture>().texture = slides[currentSlide];
-            GetComponent<GUITexture>().pixelInset = new Rect(-slides[currentSlide].width / 2.0f, -slides[currentSlide].height / 2.0f, slides[currentSlide].width, slides[currentSlide].height);
-            timeSinceLast = 0.0f;
-            currentSlide++;
+            temp.a -= 1f * Time.deltaTime;
+            slides[current].color = temp;
         }
-        timeSinceLast += Time.deltaTime;
+        else
+        {
+            slides[current].gameObject.SetActive(false);
+        }
+    }
 
+    public void FadeIn(int current)
+    {
+        Color temp = slides[current].color;
+        temp.a = 0;
+        slides[current].gameObject.SetActive(true);
+        if (temp.a < 1)
+        {
+            temp.a += 1f * Time.deltaTime;
+            slides[current].color = temp;
+        }
+    }
 
+    public void Timer()
+    {
+        changeTime -= 1 * Time.deltaTime;
+        if (changeTime <= 0)
+        {
+            transition = false;
+            changeTime = 0;
+            currentSlide += 1;
+            if (currentSlide > slides.Length)
+            {
+                currentSlide = 0;
+            }
+            StartCoroutine(Fading());
+        }
+    }
+
+    IEnumerator Fading()
+    {
+        FadeOut(currentSlide);
+        yield return new WaitForSeconds(timeSinceLast);
+        changeTime = time;
+        
+        FadeIn(currentSlide);
+        yield return new WaitForSeconds(1);
+        transition = false;
     }
 }
