@@ -11,6 +11,7 @@ public class ImageSlider : MonoBehaviour
     public int currentSlide = 0;
     private float timeSinceLast = 3.0f;
     public bool transition, pass, begin;
+    public string filePath = "";
 
     void Start()
     {
