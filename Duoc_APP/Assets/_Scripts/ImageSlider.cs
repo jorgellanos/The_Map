@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class ImageSlider : MonoBehaviour
@@ -20,15 +20,7 @@ public class ImageSlider : MonoBehaviour
         slides[1].gameObject.SetActive(false);
         slides[2].gameObject.SetActive(false);
         slides[3].gameObject.SetActive(false);
-        UnityWebRequest www = UnityWebRequestTexture.GetTexture("file://Vilu-Llanos/image.jpg");
-        if (www.isNetworkError || www.isHttpError)
-        {
-            Debug.Log(www.error);
-        }
-        else
-        {
-            slides[3] = ((DownloadHandlerTexture)www.downloadHandler).texture;
-        }
+        
     }
 
     void Update()
@@ -42,7 +34,29 @@ public class ImageSlider : MonoBehaviour
         {
             currentSlide = 0;
         }
-        Debug.Log(slides.Length);
+    }
+
+    public Sprite ImportImageToSprite(string filePath)
+    {
+        Texture2D tex = null;
+        Rect rec;
+        byte[] fileData;
+
+        if (File.Exists(filePath))
+        {
+            fileData = File.ReadAllBytes(filePath);
+            tex = new Texture2D(2, 2);
+            tex.LoadImage(fileData); //..this will auto-resize the texture dimensions.
+            Debug.Log("File Exists!");
+            rec = new Rect(0, 0, tex.width, tex.height);
+        }
+        else
+        {
+            Debug.LogError("File not exists!");
+            rec = new Rect(0,0,0,0);
+        }
+        
+        return Sprite.Create(tex, rec, new Vector2(0.5f, 0.5f), 100);
     }
 
     public void FadeOut(int current)
@@ -93,7 +107,13 @@ public class ImageSlider : MonoBehaviour
             StartCoroutine(Fading());
         }
     }
-
+    /*
+    IEnumerator LoadImage()
+    {
+        slides[0].sprite = ImportImageToSprite("file://" + Application.persistentDataPath + "/Im/IMG_1963.JPG");
+        yield return slides[0].sprite;
+    }
+    */
     IEnumerator Fading()
     {
         FadeOut(currentSlide);
