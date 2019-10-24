@@ -108,13 +108,13 @@ public class ImageSlider : MonoBehaviour
             StartCoroutine(Fading());
         }
     }
-    /*
+    
     IEnumerator LoadImage()
     {
-        slides[0].sprite = ImportImageToSprite("file://" + Application.persistentDataPath + "/Im/IMG_1963.JPG");
+        slides[0].sprite = ImportImageToSprite("C:/IMG_1963.jpg");
         yield return slides[0].sprite;
     }
-    */
+    
     IEnumerator Fading()
     {
         FadeOut(currentSlide);
