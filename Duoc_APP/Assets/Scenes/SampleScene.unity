@@ -7493,7 +7493,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 0af218381ed1c934191d2a252a94fbdd, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9941,6 +9941,11 @@ PrefabInstance:
         type: 3}
       propertyPath: slides.Array.data[4]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8976975825596163923, guid: d0e3a1b86778708479793f2052b7fcbc,
+        type: 3}
+      propertyPath: filePath
+      value: C:/IMG_1963.jpg
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8962776538268798295, guid: d0e3a1b86778708479793f2052b7fcbc, type: 3}

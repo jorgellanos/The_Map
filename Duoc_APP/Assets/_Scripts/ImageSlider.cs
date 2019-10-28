@@ -10,13 +10,14 @@ public class ImageSlider : MonoBehaviour
     public float changeTime, time;
     public int currentSlide = 0;
     private float timeSinceLast = 3.0f;
-    public bool transition, pass, begin;
-    public string filePath = "";
+    public bool transition, pass, begin, loading;
+    public string filePath;
 
     void Start()
     {
         begin = true;
-        transition = false;
+        transition = true;
+        loading = true;
         slides[0].gameObject.SetActive(true);
         slides[1].gameObject.SetActive(false);
         slides[2].gameObject.SetActive(false);
@@ -26,6 +27,11 @@ public class ImageSlider : MonoBehaviour
 
     void Update()
     {
+        if (loading)
+        {
+            StartCoroutine(LoadImage());
+        }
+
         if (!transition)
         {
             Timer();
@@ -111,8 +117,10 @@ public class ImageSlider : MonoBehaviour
     
     IEnumerator LoadImage()
     {
-        slides[0].sprite = ImportImageToSprite("C:/IMG_1963.jpg");
+        slides[0].sprite = ImportImageToSprite(filePath);
         yield return slides[0].sprite;
+        loading = false;
+        transition = false;
     }
     
     IEnumerator Fading()
