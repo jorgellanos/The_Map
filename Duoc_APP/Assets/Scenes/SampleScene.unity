@@ -9785,17 +9785,37 @@ PrefabInstance:
     - target: {fileID: 2580211075675377337, guid: d0e3a1b86778708479793f2052b7fcbc,
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2580211075675377337, guid: d0e3a1b86778708479793f2052b7fcbc,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2580211075675377337, guid: d0e3a1b86778708479793f2052b7fcbc,
         type: 3}
       propertyPath: m_textAlignment
       value: 258
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580211075675377337, guid: d0e3a1b86778708479793f2052b7fcbc,
+        type: 3}
+      propertyPath: m_text
+      value: Main PAGE
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580211075675377337, guid: d0e3a1b86778708479793f2052b7fcbc,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580211075675377337, guid: d0e3a1b86778708479793f2052b7fcbc,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580211075675377337, guid: d0e3a1b86778708479793f2052b7fcbc,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4218185774847513681, guid: d0e3a1b86778708479793f2052b7fcbc,
         type: 3}
