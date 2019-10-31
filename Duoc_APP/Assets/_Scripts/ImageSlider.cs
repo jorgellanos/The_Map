@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class ImageSlider : MonoBehaviour
 {
-    public Image[] slides = new Image[3];
+    public Image[] slides;
     public float changeTime, time;
-    public int currentSlide = 0;
+    public int imgNum, currentSlide = 0;
     private float timeSinceLast = 3.0f;
     public bool transition, pass, begin, loading;
     public string filePath;
@@ -18,11 +18,20 @@ public class ImageSlider : MonoBehaviour
         begin = true;
         transition = true;
         loading = true;
+        imgNum = Directory.GetFiles("C:/Im").Length - 1;
+        slides = new Image[imgNum];
+
+        for (int i = 0; i < imgNum; i++)
+        {
+            slides[i] = GameObject.Find("Image (" + i + ")").GetComponent<Image>();
+        }
+
+        foreach (Image img in slides)
+        {
+            img.gameObject.SetActive(false);
+        }
+
         slides[0].gameObject.SetActive(true);
-        slides[1].gameObject.SetActive(false);
-        slides[2].gameObject.SetActive(false);
-        slides[3].gameObject.SetActive(false);
-        
     }
 
     void Update()
@@ -117,8 +126,11 @@ public class ImageSlider : MonoBehaviour
     
     IEnumerator LoadImage()
     {
-        slides[0].sprite = ImportImageToSprite(filePath);
-        yield return slides[0].sprite;
+        for (int i = 0; i < slides.Length; i++)
+        {
+            slides[i].sprite = ImportImageToSprite(filePath + i + ".jpg");
+        }
+        yield return slides[currentSlide].sprite;
         loading = false;
         transition = false;
     }
