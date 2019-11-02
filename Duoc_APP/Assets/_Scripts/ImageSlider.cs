@@ -8,7 +8,7 @@ public class ImageSlider : MonoBehaviour
 {
     public Image[] slides;
     public float changeTime, time;
-    public int imgNum, currentSlide = 0;
+    public int imgNum, count, currentSlide = 0;
     private float timeSinceLast = 3.0f;
     public bool transition, pass, begin, loading;
     public string filePath;
@@ -17,38 +17,42 @@ public class ImageSlider : MonoBehaviour
     {
         begin = true;
         transition = true;
-        loading = true;
-        imgNum = Directory.GetFiles("C:/Im").Length - 1;
+        imgNum = Directory.GetFiles("C:/Im").Length;
         slides = new Image[imgNum];
-
-        for (int i = 0; i < imgNum; i++)
-        {
-            slides[i] = GameObject.Find("Image (" + i + ")").GetComponent<Image>();
-        }
-
-        foreach (Image img in slides)
-        {
-            img.gameObject.SetActive(false);
-        }
-
-        slides[0].gameObject.SetActive(true);
+        loading = true;
     }
 
     void Update()
     {
         if (loading)
         {
-            StartCoroutine(LoadImage());
+            for (int i = 0; i < imgNum + 1; i++)
+            {
+                if (i >= imgNum)
+                {
+                    slides[0].gameObject.SetActive(true);
+                    transition = false;
+                    loading = false;
+                }
+                else
+                {
+                    slides[i] = GameObject.Find("Image (" + i + ")").GetComponent<Image>();
+                    slides[i].sprite = ImportImageToSprite(filePath + i + ".jpg");
+                    slides[i].gameObject.SetActive(false);
+                }
+            }
         }
-
-        if (!transition)
+        else
         {
-            Timer();
-        }
+            if (currentSlide >= imgNum)
+            {
+                currentSlide = 0;
+            }
 
-        if (currentSlide == slides.Length)
-        {
-            currentSlide = 0;
+            if (!transition)
+            {
+                Timer();
+            }
         }
     }
 
@@ -124,17 +128,6 @@ public class ImageSlider : MonoBehaviour
         }
     }
     
-    IEnumerator LoadImage()
-    {
-        for (int i = 0; i < slides.Length; i++)
-        {
-            slides[i].sprite = ImportImageToSprite(filePath + i + ".jpg");
-        }
-        yield return slides[currentSlide].sprite;
-        loading = false;
-        transition = false;
-    }
-    
     IEnumerator Fading()
     {
         FadeOut(currentSlide);
@@ -142,7 +135,11 @@ public class ImageSlider : MonoBehaviour
         yield return new WaitForSeconds(timeSinceLast);
         if (pass)
         {
-            currentSlide += 1;
+            if (currentSlide < imgNum)
+            {
+                currentSlide += 1;
+            }
+            
             pass = false;
         }
 
