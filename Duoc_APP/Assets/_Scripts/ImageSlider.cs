@@ -72,7 +72,7 @@ public class ImageSlider : MonoBehaviour
         }
         else
         {
-            Debug.LogError("File not exists!");
+            Debug.LogError("File not exists! " + filePath);
             rec = new Rect(0,0,0,0);
         }
         

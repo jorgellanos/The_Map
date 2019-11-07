@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 66003890}
   m_Layer: 0
   m_Name: Fondos
-  m_TagString: Untagged
+  m_TagString: fondo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4698,7 +4698,7 @@ GameObject:
   - component: {fileID: 971384492}
   m_Layer: 5
   m_Name: Fondos
-  m_TagString: Untagged
+  m_TagString: fondo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7773,7 +7773,7 @@ GameObject:
   - component: {fileID: 1661054745}
   m_Layer: 0
   m_Name: Fondos
-  m_TagString: Untagged
+  m_TagString: fondo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8464,7 +8464,10 @@ MonoBehaviour:
   - {fileID: 2036274266}
   - {fileID: 1979687280}
   - {fileID: 765227211}
+  fond: []
   filePath: Assets/JsonFile.json
+  backgroundPath: C:/Im/FON_
+  loading: 0
 --- !u!1 &1880322732
 GameObject:
   m_ObjectHideFlags: 0
@@ -10356,6 +10359,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4903630898723226029, guid: d0e3a1b86778708479793f2052b7fcbc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 6209581964808904041, guid: d0e3a1b86778708479793f2052b7fcbc,
         type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
@@ -10425,6 +10433,11 @@ PrefabInstance:
         type: 3}
       propertyPath: loading
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 478064017455908842, guid: d0e3a1b86778708479793f2052b7fcbc,
+        type: 3}
+      propertyPath: m_TagString
+      value: fondo
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8962776538268798295, guid: d0e3a1b86778708479793f2052b7fcbc, type: 3}
