@@ -84,7 +84,6 @@ public class Manager : MonoBehaviour
             Debug.LogError("File not exists!");
             rec = new Rect(0, 0, 0, 0);
         }
-
         return Sprite.Create(tex, rec, new Vector2(0.5f, 0.5f), 100);
     }
 

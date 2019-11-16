@@ -102,12 +102,10 @@ public class ImageSlider : MonoBehaviour
             begin = false;
             temp.a = 0;
         }
-        
         if (!slides[current].gameObject.activeSelf)
         {
             slides[current].gameObject.SetActive(true);
         }
-        
         if (temp.a < 1)
         {
             temp.a += 0.5f * Time.deltaTime;

@@ -8466,7 +8466,7 @@ MonoBehaviour:
   - {fileID: 765227211}
   fond: []
   filePath: Assets/JsonFile.json
-  backgroundPath: C:/Im/FON_
+  backgroundPath: C:/Im/fondo_
   loading: 0
 --- !u!1 &1880322732
 GameObject:
